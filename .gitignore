@@ -1,4 +1,5 @@
 .frontier/
+dist/
 back.bat
 front.bat
 frontier.bat
