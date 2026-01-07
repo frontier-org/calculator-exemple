@@ -1,105 +1,66 @@
 /* 
-   WinUI 3 Design System for HTML5 
-   A high-fidelity replica of Windows 11 Fluent Design.
-   https://github.com/KaioHSG/winui-3-css
+   WinUI 3 Design System for HTML5 - Final Consolidated Version
+   High-fidelity replica for Windows 11 Fluent Design.
+   Compatible with Chrome, Edge, and Firefox.
 */
 
-/* --- Standardizing Reset --- */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+/* --- Standardizing Reset & Firefox Scrollbar --- */
+html {
+    scrollbar-width: auto; 
+    scrollbar-color: var(--wui-text-secondary) transparent; 
 }
 
-/* Ensure consistent box-sizing */
-* {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, 
+kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, 
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, 
+canvas, details, embed, figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0; padding: 0; border: 0; font-size: 100%; vertical-align: baseline;
 }
 
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-    display: block;
+* { 
+    box-sizing: border-box; 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    outline: none !important; /* Remove global focus ring */
 }
 
-/* Set core body defaults */
-body {
-    line-height: 1.5;
-    background-color: var(--wui-bg-page);
-    color: var(--wui-text-main);
-    overflow-x: hidden;
+body { 
+    line-height: 1.5; background-color: var(--wui-bg-page); color: var(--wui-text-main); 
+    overflow-x: hidden; font-family: var(--wui-font-stack); padding: 30px; font-size: 14px;
 }
 
-/* Remove list styles */
-ol, ul {
-    list-style: none;
-}
-
-/* Standardize media elements */
-img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-}
-
-/* Inherit fonts for inputs */
-input, button, textarea, select {
-    font: inherit;
-}
-
-/* Remove default focus ring */
-*:focus {
-    outline: none;
-}
-
-/* --- WinUI Thin Scrollbars --- */
-::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--wui-text-secondary);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--wui-accent);
-}
+/* --- Webkit Scrollbars (Chrome/Edge/WebView2) --- */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--wui-text-secondary); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--wui-accent); }
 
 /* --- Font Definitions --- */
-@font-face {
-    font-family: "Selawik";
-    src: url("selawik.ttf") format("truetype");
-    font-weight: 400;
-}
 
-@font-face {
-    font-family: 'Fluent UI System Icons';
-    src: url('FluentSystemIcons-Regular.ttf') format('truetype');
-}
+/* Selawk */
+@font-face { font-family: 'Selawk'; src: url('./selawk.woff2') format('woff2'); font-weight: normal; }
+@font-face { font-family: 'Selawk'; src: url('./selawkb.woff2') format('woff2'); font-weight: bold; }
+@font-face { font-family: 'Selawk'; src: url('./selawkl.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'Selawk'; src: url('./selawksb.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'Selawk'; src: url('./selawksl.woff2') format('woff2'); font-weight: 400; }
+
+/* Fluent System Icons */
+@font-face { font-family: 'Fluent System Icons'; src: url('./FluentSystemIcons-Filled.woff2') format('woff2'); font-weight: bold; }
+@font-face { font-family: 'Fluent System Icons'; src: url('./FluentSystemIcons-Light.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'Fluent System Icons'; src: url('./FluentSystemIcons-Regular.woff2') format('woff2'); font-weight: normal; }
+@font-face { font-family: 'Fluent System Icons Resizable'; src: url('./FluentSystemIcons-Resizable.woff2') format('woff2'); }
+
+/* Fluent Emoji */
+@font-face { font-family: 'Fluent Emoji Color'; src: url('./FluentEmojiColor.ttf') format('truetype'); }
+@font-face { font-family: 'Fluent Emoji Flat'; src: url('./FluentEmojiFlat.ttf') format('truetype'); }
+@font-face { font-family: 'Fluent Emoji High Contrast'; src: url('./FluentEmojiHighContrast.ttf') format('truetype'); }
+@font-face { font-family: 'Fluent Emoji High Contrast Inverted'; src: url('./FluentEmojiHighContrastInverted.ttf') format('truetype'); }
+
 
 :root {
-    /* Color Tokens - Light Theme */
     --wui-accent: #005fb8;
     --wui-accent-hover: #196ec0;
     --wui-accent-active: #3184ca;
@@ -112,20 +73,16 @@ input, button, textarea, select {
     --wui-border-strong: rgba(0, 0, 0, 0.44);
     --wui-control-bg: #fbfbfb;
     --wui-control-hover: #f6f6f6;
-    
-    /* Typography Tokens */
-    --wui-font-stack: "Segoe UI Variable Text", "Segoe UI", "Selawik", system-ui, sans-serif;
-    --wui-icon-font: "Segoe MDL2 Assets", "Fluent UI System Icons";
-    
-    /* Elevation */
+    --wui-track-bg: rgba(0, 0, 0, 0.1); 
+    --wui-font-stack: "Selawik", sans-serif;
+    --wui-icon-font: "Fluent System Icons";
     --wui-shadow: 0 2px 4px rgba(0,0,0,0.04);
 }
 
-/* Dark Mode Overrides */
 @media (prefers-color-scheme: dark) {
     :root {
         --wui-bg-page: #202020;
-        --wui-bg-card: rgba(255, 255, 255, 0.05);
+        --wui-bg-card: #2c2c2c;
         --wui-text-main: #ffffff;
         --wui-text-secondary: #adadad;
         --wui-border-light: rgba(255, 255, 255, 0.08);
@@ -133,32 +90,16 @@ input, button, textarea, select {
         --wui-control-bg: rgba(255, 255, 255, 0.06);
         --wui-control-hover: rgba(255, 255, 255, 0.09);
         --wui-accent: #60cdff;
+        --wui-track-bg: rgba(255, 255, 255, 0.2); 
     }
-}
-
-/* --- Core Styles --- */
-body {
-    background-color: var(--wui-bg-page);
-    color: var(--wui-text-main);
-    padding: 30px;
-    font-size: 14px;
-    font-family: var(--wui-font-stack);
 }
 
 /* --- Typography --- */
 h1, h2, h3, h4 { font-weight: 600; margin: 0 0 12px 0; }
 h1 { font-size: 28px; letter-spacing: -0.01em; }
 h2 { font-size: 20px; }
-h3 { font-size: 16px; }
 p { margin-bottom: 12px; color: var(--wui-text-secondary); }
-
-a { 
-    color: var(--wui-accent); 
-    text-decoration: none; 
-    border-radius: 4px; 
-    padding: 2px 4px; 
-    transition: 0.1s; 
-}
+a { color: var(--wui-accent); text-decoration: none; border-radius: 4px; transition: 0.1s; display: inline-block; }
 a:hover { background-color: var(--wui-control-hover); }
 
 /* --- Buttons --- */
@@ -166,239 +107,137 @@ button, input[type="button"], input[type="submit"] {
     background-color: var(--wui-control-bg);
     border: 1px solid var(--wui-border-light);
     border-bottom: 1.3px solid var(--wui-border-strong);
-    border-radius: 4px;
-    color: var(--wui-text-main);
-    padding: 5px 16px;
-    min-width: 100px;
-    height: 32px;
-    font-size: 14px;
-    cursor: default;
-    user-select: none;
+    border-radius: 4px; color: var(--wui-text-main);
+    padding: 0 16px; min-width: 100px; height: 32px;
+    cursor: default; user-select: none;
     transition: all 0.1s cubic-bezier(0.7, 0, 0.3, 1);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
 }
-
 button:hover { background-color: var(--wui-control-hover); }
-button:active { transform: scale(0.98); background-color: rgba(128, 128, 128, 0.06); }
+button:active { transform: scale(0.98); background-color: rgba(128, 128, 128, 0.1); }
+button.primary { background-color: var(--wui-accent); border: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.3); color: #fff; }
 
-button[disabled] {
-    opacity: 0.6;
-    background-color: var(--wui-border-light);
-    border-bottom: 1px solid var(--wui-border-light);
-    color: var(--wui-text-disabled);
-    pointer-events: none;
-}
-
-button.primary, button[type="submit"] {
-    background-color: var(--wui-accent);
-    color: #ffffff;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-bottom: 1px solid rgba(0,0,0,0.3);
-}
-button.primary:hover { filter: brightness(1.1); }
-
-/* --- Inputs & Selection (Fixing the layout jump) --- */
-input[type="text"], input[type="password"], input[type="email"], 
-input[type="number"], textarea, select {
+/* --- Inputs & Select (Focus Ring Removed) --- */
+input[type="text"], input[type="password"], input[type="email"], select, textarea {
     background-color: var(--wui-control-bg);
     border: 1px solid var(--wui-border-light);
-    /* Set a constant 2px bottom border to prevent displacement */
     border-bottom: 2px solid var(--wui-border-strong);
-    border-radius: 4px;
-    padding: 6px 12px;
-    color: var(--wui-text-main);
+    border-radius: 4px; color: var(--wui-text-main);
+    padding: 0 12px; line-height: 30px; height: 32px;
     transition: background 0.2s;
-    height: 32px;
+    /* Suppression of native browser effects */
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-textarea { height: auto; }
-
-/* The focus indicator uses the existing 2px border, only changing color */
-input:focus, textarea:focus, select:focus {
-    background: var(--wui-bg-card);
-    border-bottom-color: var(--wui-accent);
+select {
+    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='grey' d='M1.5 3.5l4.5 4.5 4.5-4.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center;
+    padding-right: 32px !important;
 }
 
-/* Selection Indicator for Custom Lists (Optional Class) */
-/* This absolute positioning prevents "pushing" the text */
-.wui-selection-item {
-    position: relative;
-    padding: 8px 12px 8px 16px;
-    cursor: default;
-    border-radius: 4px;
-}
-.wui-selection-item:hover { background: var(--wui-control-hover); }
-.wui-selection-item.selected::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 25%;
-    height: 50%;
-    width: 3px;
-    background: var(--wui-accent);
-    border-radius: 2px;
+/* WinUI Focus: Only the bottom border changes */
+input:focus, select:focus, textarea:focus { 
+    background: var(--wui-bg-card); 
+    border-bottom-color: var(--wui-accent); 
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* --- Checkbox & Radio --- */
 input[type="checkbox"], input[type="radio"] {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--wui-border-strong);
-    border-radius: 4px;
-    background: var(--wui-control-bg);
-    vertical-align: middle;
-    position: relative;
-    cursor: pointer;
-    margin: 0 8px 0 0;
+    appearance: none; width: 20px; height: 20px;
+    border: 1px solid var(--wui-border-strong); border-radius: 4px;
+    background: var(--wui-control-bg); vertical-align: middle;
+    position: relative; cursor: pointer; margin-right: 8px;
+    outline: none !important;
 }
-
 input[type="radio"] { border-radius: 50%; }
-input[type="checkbox"]:checked, input[type="radio"]:checked {
-    background-color: var(--wui-accent);
-    border: none;
-}
-
+input[type="checkbox"]:checked, input[type="radio"]:checked { background-color: var(--wui-accent); border: none; }
 input[type="checkbox"]:checked::after {
-    content: "\E73E"; 
-    font-family: var(--wui-icon-font);
-    font-size: 10px;
-    color: white;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
+    content: "\F294"; font-family: var(--wui-icon-font); font-size: 10px;
+    color: #fff; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
-
 input[type="radio"]:checked::after {
-    content: "";
-    width: 8px; height: 8px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* --- Volume Bar (Slider / Range) --- */
-/* Cleaned up: No indicator bar below the slider container */
-input[type="range"] {
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
-    width: 100%;
-    height: 32px; /* Container height */
-    display: block;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-    background: var(--wui-text-secondary);
-    height: 4px;
-    border-radius: 2px;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    height: 18px;
-    width: 18px;
-    background: var(--wui-accent);
-    border: 3px solid var(--wui-bg-card);
-    border-radius: 50%;
-    margin-top: -7px; /* Centers thumb on 4px track */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    transition: transform 0.1s;
-}
-
-input[type="range"]:active::-webkit-slider-thumb {
-    transform: scale(0.8);
+    content: ""; width: 8px; height: 8px; background: #fff;
+    border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 
 /* --- Progress Bar --- */
 progress {
-    appearance: none;
-    height: 4px;
-    width: 100%;
-    border-radius: 2px;
-    overflow: hidden;
-    display: block;
-    margin: 10px 0;
+    appearance: none; -moz-appearance: none; -webkit-appearance: none;
+    height: 4px; width: 100%; border: none; 
+    background-color: var(--wui-track-bg); border-radius: 10px; 
+    display: block; margin: 10px 0; overflow: hidden;
 }
-progress::-webkit-progress-bar { background-color: var(--wui-border-light); }
-progress::-webkit-progress-value { background-color: var(--wui-accent); transition: width 0.3s ease; }
+progress::-webkit-progress-bar { background-color: var(--wui-track-bg); border-radius: 10px; }
+progress::-webkit-progress-value { background-color: var(--wui-accent); border-radius: 10px; transition: width 0.3s ease; }
+progress::-moz-progress-bar { background-color: var(--wui-accent); border-radius: 10px; }
 
-/* --- Tables --- */
+/* --- Volume Slider (Unified & Overlap Fixed) --- */
+input[type="range"] {
+    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    background: transparent; cursor: pointer; width: 100%; height: 32px;
+    outline: none !important;
+}
+
+/* Track Styling */
+input[type="range"]::-webkit-slider-runnable-track { 
+    background: var(--wui-track-bg); height: 4px; border-radius: 4px; 
+    overflow: hidden; 
+}
+input[type="range"]::-moz-range-track { background: var(--wui-track-bg); height: 4px; border-radius: 4px; }
+
+/* Fill Styling (Firefox Native) */
+input[type="range"]::-moz-range-progress { background-color: var(--wui-accent); height: 4px; border-radius: 4px; }
+
+/* Thumb Styling */
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none; -webkit-appearance: none;
+    height: 18px; width: 18px;
+    background: var(--wui-accent); 
+    border: 3px solid var(--wui-bg-card);
+    border-radius: 50%; 
+    margin-top: -7px;
+    position: relative;
+    /* Spread adjusted to match 4px track height precisely */
+    box-shadow: -100vw 0 0 -6.5px var(--wui-accent); 
+    z-index: 2;
+}
+
+input[type="range"]::-moz-range-thumb {
+    appearance: none; height: 18px; width: 18px; 
+    background: var(--wui-accent);
+    border: 3px solid var(--wui-bg-card); 
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+    box-sizing: border-box;
+}
+
+/* --- Tables & Lists --- */
 table {
-    width: 100%;
-    border-spacing: 0;
-    background: var(--wui-bg-card);
-    border-radius: 8px;
-    border: 1px solid var(--wui-border-light);
-    box-shadow: var(--wui-shadow);
-    overflow: hidden;
+    width: 100%; border-spacing: 0; background: var(--wui-bg-card);
+    border-radius: 8px; border: 1px solid var(--wui-border-light);
+    box-shadow: var(--wui-shadow); overflow: hidden;
 }
-
 th {
-    text-align: left;
-    padding: 12px;
-    background: rgba(128, 128, 128, 0.02);
-    border-bottom: 1px solid var(--wui-border-light);
-    font-weight: 600;
+    text-align: left; padding: 12px; font-weight: 600;
+    background: rgba(128, 128, 128, 0.05); border-bottom: 1px solid var(--wui-border-light);
 }
-
 td { padding: 12px; border-bottom: 1px solid var(--wui-border-light); }
 tr:hover { background: var(--wui-control-hover); }
 
 /* --- Containers --- */
 .card {
-    background: var(--wui-bg-card);
-    border: 1px solid var(--wui-border-light);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: var(--wui-shadow);
-    margin-bottom: 20px;
+    background: var(--wui-bg-card); border: 1px solid var(--wui-border-light);
+    border-radius: 8px; padding: 20px; box-shadow: var(--wui-shadow); margin-bottom: 20px;
 }
-
-details {
-    background: var(--wui-bg-card);
-    border: 1px solid var(--wui-border-light);
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-summary {
-    padding: 12px 16px;
-    cursor: pointer;
-    list-style: none;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-summary::after {
-    content: "\E70D"; 
-    font-family: var(--wui-icon-font);
-    font-size: 12px;
-    transition: 0.3s;
-}
-
+details { background: var(--wui-bg-card); border: 1px solid var(--wui-border-light); border-radius: 8px; margin-bottom: 10px; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 500; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+summary::after { content: "\F2A3"; font-family: var(--wui-icon-font); font-size: 12px; transition: 0.2s; }
 details[open] summary::after { transform: rotate(180deg); }
-
 .details-content { padding: 0 16px 16px 16px; color: var(--wui-text-secondary); }
 
-/* --- Icon System --- */
-.wui-icon {
-    font-family: var(--wui-icon-font);
-    font-style: normal;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 1;
-}
-
-/* --- Animations --- */
-@keyframes wui-pop {
-    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-}
+/* --- Icons --- */
+.wui-icon { font-family: var(--wui-icon-font); font-style: normal; display: inline-block; vertical-align: middle; line-height: 1; }
