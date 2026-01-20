@@ -4,7 +4,7 @@
 name = "Mod Java"
 version = "1.0.0"
 extension = "java"
-interpreter = "modules/mod_java/jvm_bridge.bat"
+interpreter = "modules/mod_java/javac_bridge.bat"
 
 [dev]
 strategy = "build"

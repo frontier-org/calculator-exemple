@@ -14,5 +14,6 @@ shift
 goto loop
 
 :run
+if not exist ".frontier/target/dev_cache" ( mkdir ".frontier/target/dev_cache" )
 java -cp ".frontier/target/dev_cache" !CLASS_NAME! !USER_ARGS!
 endlocal
