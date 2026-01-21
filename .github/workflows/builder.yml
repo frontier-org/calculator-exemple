@@ -20,14 +20,36 @@ jobs:
         with:
           ref: main
 
+      # --- Install Dependencies ---
+
+      - name: Set up Java (JDK)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+
+      - name: Set up GCC (MinGW)
+        run: |
+          choco install mingw
+          echo "C:\tools\mingw64\bin" >> $env:GITHUB_PATH
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
 
+      # --- Install Frontier ---
+
       - name: Install Frontier
         run: |
           echo "" | powershell -nop "iex(irm https://frontier-fw.dev/get.ps1)"
+
+      # --- Build Process ---
 
       - name: Build Frontier App
         run: .\frontier build
@@ -45,6 +67,8 @@ jobs:
               Write-Error "Failed to find 'name' under [app] in frontier.toml"
               exit 1
           }
+
+      # --- Release ---
 
       - name: Create Release and Upload File
         uses: softprops/action-gh-release@v2
