@@ -22,7 +22,7 @@ jobs:
 
       # --- Install Dependencies ---
 
-      - name: Set up Java (JDK)
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           java-version: '17'
@@ -30,7 +30,7 @@ jobs:
           #cache: 'gradle'
           #cache: 'maven'
 
-      - name: Set up Go
+      - name: Setup Go
         uses: actions/setup-go@v5
         with:
           go-version: 'stable'
@@ -39,7 +39,7 @@ jobs:
       #- name: Install Go Dependencies
         #run: go mod download
 
-      - name: Cache MinGW
+      - name: Cache MinGW (GCC)
         id: cache-mingw
         uses: actions/cache@v4
         with:
@@ -47,13 +47,13 @@ jobs:
           key: ${{ runner.os }}-mingw-v1
           restore-keys: ${{ runner.os }}-mingw-
 
-      - name: Set up MinGW (GCC)
+      - name: Setup MinGW (GCC)
         if: steps.cache-mingw.outputs.cache-hit != 'true'
         run: |
           choco install mingw --unattended
           echo "C:\tools\mingw64\bin" >> $env:GITHUB_PATH
 
-      - name: Cache Frontier and Rust
+      - name: Cache Rust
         uses: actions/cache@v4
         with:
           path: |
@@ -61,17 +61,24 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            .frontier/target/debug/
-            .frontier/target/release/
-          key: ${{ runner.os }}-frontier-${{ hashFiles('**/frontier.toml', '**/Cargo.lock') }}
-          restore-keys: ${{ runner.os }}-frontier-
+          key: ${{ runner.os }}-cargo-v1
+          restore-keys: ${{ runner.os }}-cargo-
 
-      - name: Install Rust
+      - name: Set up Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
 
       # --- Install Frontier ---
+
+      - name: Cache Frontier
+        uses: actions/cache@v4
+        with:
+          path: |
+            .frontier/target/debug/
+            .frontier/target/release/
+          key: ${{ runner.os }}-frontier-${{ hashFiles('.frontier/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-frontier-
 
       - name: Install Frontier
         shell: pwsh
