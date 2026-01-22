@@ -47,7 +47,7 @@ jobs:
           path: C:\ProgramData\chocolatey\lib\mingw
           key: ${{ runner.os }}-mingw
 
-      - name: Set up GCC (MinGW)
+      - name: Set up MinGW (GCC)
         if: steps.cache-mingw.outputs.cache-hit != 'true'
         run: |
           choco install mingw --unattended
@@ -75,7 +75,7 @@ jobs:
 
       # --- Install Frontier ---
 
-      - name: Install Frontier CLI
+      - name: Install Frontier
         shell: pwsh
         run: $v='0.1.0-alpha.6'; $p='.'; $ni=$true; $nu=$true; iex(irm https://frontier-fw.dev/get.ps1)
 
